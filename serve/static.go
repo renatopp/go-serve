@@ -52,7 +52,11 @@ func NewStaticServer(opts StaticServerOptions) *http.Server {
 	}
 
 	mux := http.NewServeMux()
-	mux.Handle(opts.Prefix, handler)
+	pattern := opts.Prefix
+	if pattern != "/" {
+		pattern = normalizePrefix(pattern)
+	}
+	mux.Handle(pattern, handler)
 
 	return &http.Server{
 		Addr:    opts.Address,

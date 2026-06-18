@@ -14,7 +14,7 @@ func TestStaticModeCLI(t *testing.T) {
 	t.Run("serves files from directory", func(t *testing.T) {
 		server := serve.NewStaticServer(serve.StaticServerOptions{
 			Address:     ":0",
-			Directory:   "./tests/files",
+			Directory:   "./files",
 			Logger:      log.New(nil, "", 0),
 			Prefix:      "//sample/",
 			SpaFallback: false,
@@ -39,7 +39,7 @@ func TestStaticModeCLI(t *testing.T) {
 	t.Run("supports spa fallback", func(t *testing.T) {
 		server := serve.NewStaticServer(serve.StaticServerOptions{
 			Address:     ":0",
-			Directory:   "./tests/files",
+			Directory:   "./files",
 			Logger:      log.New(nil, "", 0),
 			Prefix:      "//sample/",
 			SpaFallback: true,
@@ -61,7 +61,7 @@ func TestStaticModeCLI(t *testing.T) {
 	t.Run("supports optional cors headers", func(t *testing.T) {
 		server := serve.NewStaticServer(serve.StaticServerOptions{
 			Address:     ":0",
-			Directory:   "./tests/files",
+			Directory:   "./files",
 			Logger:      log.New(nil, "", 0),
 			Prefix:      "//sample/",
 			SpaFallback: false,
