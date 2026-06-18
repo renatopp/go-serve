@@ -1,4 +1,4 @@
-package servers
+package serve
 
 import (
 	"log"
@@ -27,12 +27,13 @@ func (o StaticServerOptions) orDefault() StaticServerOptions {
 		o.Prefix = "/"
 	}
 	if o.Logger == nil {
-		o.Logger = defaultLogger()
+		o.Logger = NewDefaultLogger()
 	}
 
 	return o
 }
 
+// NewStaticServer returns an HTTP server that serves static files from the specified directory.
 func NewStaticServer(opts StaticServerOptions) *http.Server {
 	opts = opts.orDefault()
 

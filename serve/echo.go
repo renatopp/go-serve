@@ -1,4 +1,4 @@
-package servers
+package serve
 
 import (
 	"encoding/json"
@@ -18,7 +18,7 @@ func (e EchoServerOptions) orDefault() EchoServerOptions {
 		e.Address = ":8080"
 	}
 	if e.Logger == nil {
-		e.Logger = defaultLogger()
+		e.Logger = NewDefaultLogger()
 	}
 	return e
 }
@@ -31,6 +31,7 @@ type EchoResponse struct {
 	Body    string              `json:"body"`
 }
 
+// NewEchoServer returns an HTTP server that echoes back the request details as JSON.
 func NewEchoServer(opts EchoServerOptions) *http.Server {
 	opts = opts.orDefault()
 	var handler http.Handler

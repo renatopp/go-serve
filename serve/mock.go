@@ -1,4 +1,4 @@
-package servers
+package serve
 
 import (
 	"log"
@@ -26,11 +26,12 @@ func (o MockServerOptions) orDefault() MockServerOptions {
 		o.Status = http.StatusOK
 	}
 	if o.Logger == nil {
-		o.Logger = defaultLogger()
+		o.Logger = NewDefaultLogger()
 	}
 	return o
 }
 
+// NewMockServer returns an HTTP server that responds with a fixed status code and body.
 func NewMockServer(opts MockServerOptions) *http.Server {
 	opts = opts.orDefault()
 

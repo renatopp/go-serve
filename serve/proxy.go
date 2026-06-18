@@ -1,4 +1,4 @@
-package servers
+package serve
 
 import (
 	"fmt"
@@ -21,11 +21,12 @@ func (o ProxyServerOptions) orDefault() ProxyServerOptions {
 		o.Address = ":8080"
 	}
 	if o.Logger == nil {
-		o.Logger = defaultLogger()
+		o.Logger = NewDefaultLogger()
 	}
 	return o
 }
 
+// NewProxyServer returns an HTTP server that acts as a reverse proxy to the target address.
 func NewProxyServer(opts ProxyServerOptions) (*http.Server, error) {
 	opts = opts.orDefault()
 

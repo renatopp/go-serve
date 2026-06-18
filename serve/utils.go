@@ -1,4 +1,4 @@
-package servers
+package serve
 
 import (
 	"bytes"
@@ -14,7 +14,7 @@ import (
 	"github.com/renatopp/x/strx"
 )
 
-func defaultLogger() *log.Logger {
+func NewDefaultLogger() *log.Logger {
 	logger := log.New(os.Stdout, "", 0)
 	return logger
 }
