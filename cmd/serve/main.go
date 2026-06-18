@@ -55,12 +55,12 @@ func cmdStatic() {
 }
 
 func cmdMock() {
-	cli.Name("Mock")
+	cli.Name("mock")
 	cli.Description("Serve a mock server which can return specified status code, headers and body.")
 	address := cli.Pos("address", "Address to listen on").WithDefault(":8080")
 	status := cli.FlagInt("status", "s", "Response status code").WithDefault(http.StatusOK)
 	body := cli.Flag("body", "b", "Response body").WithDefault("")
-	delay := cli.FlagDuration("delay", "d", "Response delay in milliseconds").WithDefault(0)
+	delay := cli.FlagDuration("delay", "d", "Response delay, use duration format (e.g. 5s, 1m)").WithDefault(0)
 	headersRaw := cli.Flag("header", "H", "Response header. Repeatable: -H \"Key: Value\"").AsRepeatable()
 	verbose := cli.FlagBool("", "v", "-v logs endpoints, -vv logs endpoints, headers and body.").AsRepeatable()
 	cli.Parse()
@@ -93,7 +93,7 @@ func cmdMock() {
 }
 
 func cmdEcho() {
-	cli.Name("Echo")
+	cli.Name("echo")
 	cli.Description("Serve an echo server which responds the request data (endpoint, headers and body) as JSON.")
 	address := cli.Pos("address", "Address to listen on").WithDefault(":8080")
 	verbose := cli.FlagBool("", "v", "-v logs endpoints, -vv logs endpoints, headers and body.").AsRepeatable()
@@ -109,7 +109,7 @@ func cmdEcho() {
 }
 
 func cmdProxy() {
-	cli.Name("Proxy")
+	cli.Name("proxy")
 	cli.Description("Serve a reverse proxy which forwards requests to a target address.")
 	target := cli.Pos("target_address", "Target address to proxy to").AsRequired()
 	self := cli.Pos("self_address", "Address to listen on")
