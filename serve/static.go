@@ -36,13 +36,14 @@ func (o StaticServerOptions) orDefault() StaticServerOptions {
 // NewStaticServer returns an HTTP server that serves static files from the specified directory.
 func NewStaticServer(opts StaticServerOptions) *http.Server {
 	opts = opts.orDefault()
+	opts.Prefix = normalizePrefix(opts.Prefix)
 
 	handler := http.Handler(http.FileServer(http.Dir(opts.Directory)))
 	if opts.SpaFallback {
 		handler = withSpaFallback(handler, opts.Directory)
 	}
 	if opts.Prefix != "/" {
-		handler = http.StripPrefix(normalizePrefix(opts.Prefix), handler)
+		handler = http.StripPrefix(opts.Prefix, handler)
 	}
 	if opts.EnableCors {
 		handler = withCors(handler)
@@ -52,11 +53,7 @@ func NewStaticServer(opts StaticServerOptions) *http.Server {
 	}
 
 	mux := http.NewServeMux()
-	pattern := opts.Prefix
-	if pattern != "/" {
-		pattern = normalizePrefix(pattern)
-	}
-	mux.Handle(pattern, handler)
+	mux.Handle(opts.Prefix, handler)
 
 	return &http.Server{
 		Addr:    opts.Address,
