@@ -1,0 +1,5 @@
+github.com/renatopp/go-cli v0.4.0 h1:93AYCf256GblcykLxbkp7X1B51O+EN6Bump5FhgpHkE=
+github.com/renatopp/go-cli v0.4.0/go.mod h1:jE5zjrOlCvEEAUH4paBs7dxLrBw7HO+1XQQU6Ge0P7Q=
+github.com/renatopp/x v0.0.4/go.mod h1:A6JC9f1wgJH/MJRx3sxm+yFgXtgzKln/k/dZRE7vIQg=
+github.com/renatopp/x v0.0.6 h1:rEpvjcZlomcmUrFQ++lI6BWfQrhdp7OGNpfcr9Qsu3o=
+github.com/renatopp/x v0.0.6/go.mod h1:dZtw9ZdQBPGSVfVFQsRJTIZSwKAdfgNYz3jt68mcJrw=
